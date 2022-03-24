@@ -1,0 +1,68 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: lightblue;
+}
+
+.title {
+    text-align: center;
+    margin: 20px;
+    margin-bottom: 30px;
+}
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.money {
+    margin-bottom: 40px;
+}
+
+#money {
+    font-size: 20px;
+    margin-left: 5px;
+}
+
+.money img {
+    width: 30px;
+}
+
+#momo {
+    cursor: pointer;
+}
+
+
+.shops {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+
+}
+
+.shops a{
+    cursor: pointer;
+    border: 2px solid blue;
+    margin: 5px;
+}
+
+.cost-img {
+    width: 30px;
+    margin-right: 8px;
+}
+
+#momo {
+    justify-content: center;
+    align-content: center;
+}
+
+.name span {
+    font-size: 15px;
+}
+
