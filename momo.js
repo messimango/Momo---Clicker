@@ -27,15 +27,17 @@ var shopPS = 50;
 var farmPS = 250;
 var factoryPS = 5000;
 
+var totalps = 0;
+var totalSpan = document.querySelector(".money-persec");
 
 // Money per sec
 setInterval(function() {
     money = money + (handmadeOwned * (handmadePS / 10)) + (motherOwned * (motherPS / 10)) + (standOwned * (standPS / 10)) + (shopOwned * (shopPS / 10)) + (farmOwned * (farmPS / 10)) + (factoryOwned * (factoryPS / 10));
     total = total + (handmadeOwned * (handmadePS / 10)) + (motherOwned * (motherPS / 10)) + (standOwned * (standPS / 10)) + (shopOwned * (shopPS / 10)) + (farmOwned * (farmPS / 10)) + (factoryOwned * (factoryPS / 10));
-        
     money = Math.round(money * 100) / 100;
     document.getElementById("money").innerHTML = formatter.format(money);
     document.getElementById("total").innerHTML = formatter.format(total);
+    totalSpan.innerHTML = formatter.format((handmadeOwned * handmadePS) + (motherOwned * motherPS) + (standOwned * standPS) + (shopOwned * shopPS) + (farmOwned * farmPS) + (factoryOwned * factoryPS));
 
 }, 100)
 
@@ -322,7 +324,7 @@ document.querySelectorAll('.msg').forEach(button => {
 });
 
 function func1() {
-  textBox.innerHTML = "See details here"
+  textBox.innerHTML = ""
 }
 
 // menu upgrades 
