@@ -1,4 +1,4 @@
-var money = 0;
+var money = 1000000;
 var clickMulti = 1;
 
 var formatter = new Intl.NumberFormat('en-US', {
@@ -72,19 +72,19 @@ function addHandmade() {
 
         if (handmadeOwned > 4 && upgradeCheck1) {
             document.getElementById("mother").classList.remove("hidden");
-            upgrade1.style.display = 'inline';
+            upgrade1.style.display = 'inline-block';
             upgradeCheck1 = false;
         }
         if (handmadeOwned > 9 && upgradeCheck2) {
-            upgrade2.style.display = 'inline';
+            upgrade2.style.display = 'inline-block';
             upgradeCheck2 = false;
         }
         if (handmadeOwned > 19 && upgradeCheck4) {
-            upgrade4.style.display = 'inline';
+            upgrade4.style.display = 'inline-block';
             upgradeCheck4 = false;
         }
         if (handmadeOwned > 19 && upgradeCheck5) {
-            upgrade5.style.display = 'inline';
+            upgrade5.style.display = 'inline-block';
             upgradeCheck5 = false;
         }
     }  
@@ -112,7 +112,7 @@ function addMother() {
         
         if (motherOwned > 4 && upgradeCheck3) {
             document.getElementById("stand").classList.remove("hidden");
-            upgrade3.style.display = 'inline';
+            upgrade3.style.display = 'inline-block';
             upgradeCheck3 = false;
         }
     }          
@@ -309,11 +309,11 @@ upgrade5.addEventListener('click', function() {
 const textBox = document.querySelector(".text-box")
 
 const messages = {
-  u1: "Clicks produce 2x the MoMos",
-  u2: "Makes 2x handmade MoMos",
-  u3: "Mother's make MoMos 2x faster",
-  u4: "Clicks produce 4x the MoMos",
-  u5: "Makes 4x handmade MoMos",
+  u1: "Remove grime from cursor, clicks produce 2x the MoMos",
+  u2: "Silver hands, Makes 2x handmade MoMos",
+  u3: "Buy Mommy new appliances so she makes MoMos 2x faster",
+  u4: "New Razor mouse, clicks produce 4x the MoMos",
+  u5: "Golden Hands, Make 4x handmade MoMos",
 };
 
 document.querySelectorAll('.msg').forEach(button => {

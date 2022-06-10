@@ -83,6 +83,14 @@ body {
     padding: .2rem;
 }
 
+.nav-upgrade2 {
+    color: silver;
+}
+
+.nav-upgrade5 {
+    color: #FFD700;
+}
+
 .nav-stats {
     text-align: center;
 }
@@ -110,8 +118,8 @@ body {
     position: absolute;
     top: 1.5rem;
     right: 1rem;
-    max-width: 30vw;
     min-width: 250px;
+    height: 150px;
     padding: 0.5rem;
     text-align: center;
 
@@ -121,11 +129,35 @@ body {
     margin-bottom: .5rem;
 }
 
-.upgrades i {
+.upgrade-buttons i {
     display: none;
     cursor: pointer;
-    padding: 3px;
+    padding: 5px;
     font-size: larger;
+}
+
+.upgrade-buttons i p {
+    color: black;
+    margin-top: 3px;
+    font-size: medium;
+    font-weight: 900;
+    
+}
+
+.upgrade2 {
+    color: silver;
+}
+
+.upgrade5 {
+    color: #FFD700;
+}
+
+.text-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 250px;
+    height: 20px;
 }
 
 /* Game */
