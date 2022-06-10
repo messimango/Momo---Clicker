@@ -79,6 +79,8 @@ body {
 
 .nav-upgrades i{
     display: none;
+    cursor: pointer;
+    padding: .2rem;
 }
 
 .nav-stats {

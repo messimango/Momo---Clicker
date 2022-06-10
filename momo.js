@@ -1,4 +1,4 @@
-var money = 10000;
+var money = 0;
 var clickMulti = 1;
 
 var formatter = new Intl.NumberFormat('en-US', {
@@ -323,4 +323,17 @@ document.querySelectorAll('.msg').forEach(button => {
 
 function func1() {
   textBox.innerHTML = "See details here"
+}
+
+// menu upgrades 
+
+document.querySelectorAll('.nmsg').forEach(button => {
+    button.addEventListener("mouseover", e => menuTextBox.innerHTML = messages[e.currentTarget.dataset.msg], false);
+    button.addEventListener("mouseout", func2, false);
+});
+
+const menuTextBox = document.querySelector(".nav-info-box")
+
+function func2() {
+    menuTextBox.innerHTML = "Hover over upgrades to see details"
 }
