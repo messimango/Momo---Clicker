@@ -1,19 +1,54 @@
-var money = 12000;
+var money = 10000;
+var clickMulti = 1;
+
+var formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+});
+  
+// upgrade checker
+var upgradeCheck1 = true;
+var upgradeCheck2 = true;
+var upgradeCheck3 = true;
+var upgradeCheck4 = true;
+var upgradeCheck5 = true;
+
+// STATS
+var total = 0;
+var totalClicks = 0;
+var totalBuild = 0;  
+
+
+// Momo per sec for buildings
+var handmadePS = 0.2;
+var motherPS = 1;
+var standPS = 10;
+var shopPS = 50;
+var farmPS = 250;
+var factoryPS = 5000;
 
 
 // Money per sec
 setInterval(function() {
-    money = money + (handmadeOwned * .25) + (motherOwned * 5) + (standOwned * 50) + (shopOwned * 500) + (farmOwned * 2500) + (factoryOwned * 50000);
-    document.getElementById("money").innerHTML = money;
-}, 500)
+    money = money + (handmadeOwned * (handmadePS / 10)) + (motherOwned * (motherPS / 10)) + (standOwned * (standPS / 10)) + (shopOwned * (shopPS / 10)) + (farmOwned * (farmPS / 10)) + (factoryOwned * (factoryPS / 10));
+    total = total + (handmadeOwned * (handmadePS / 10)) + (motherOwned * (motherPS / 10)) + (standOwned * (standPS / 10)) + (shopOwned * (shopPS / 10)) + (farmOwned * (farmPS / 10)) + (factoryOwned * (factoryPS / 10));
+        
+    money = Math.round(money * 100) / 100;
+    document.getElementById("money").innerHTML = formatter.format(money);
+    document.getElementById("total").innerHTML = formatter.format(total);
+
+}, 100)
 
 
 // click
 
 
 function addMomo() {
-    money += 1;
-	document.getElementById("money").innerHTML = money;
+    money += clickMulti;
+    total++;
+    totalClicks++;
+	document.getElementById("money").innerHTML = formatter.format(money);
+    document.getElementById("total-click").innerHTML = totalClicks;
 }
 document.querySelector('#momo').onclick = addMomo;
 
@@ -25,12 +60,33 @@ var handmadeOwned = 0;
 
 function addHandmade() {
     if (money >= handmadeCost) {
-        handmadeOwned += 1;
+        handmadeOwned++;
+        totalBuild++;
         money = money - handmadeCost;
-        handmadeCost = Math.round(handmadeCost * 1.3);
-        document.querySelector(".handmade-cost").innerHTML = handmadeCost;
-        document.getElementById("money").innerHTML = money;
+        handmadeCost = Math.round(handmadeCost * 1.13);
+        document.querySelector(".handmade-cost").innerHTML = formatter.format(handmadeCost);
+        document.getElementById("money").innerHTML = formatter.format(money);
         document.querySelector('.shop-amount-hand').innerHTML = handmadeOwned;
+        document.getElementById("total-build").innerHTML = totalBuild;
+        document.getElementById("hand-ps").innerHTML = Math.round((handmadeOwned * handmadePS) * 100) / 100;
+
+        if (handmadeOwned > 4 && upgradeCheck1) {
+            document.getElementById("mother").classList.remove("hidden");
+            upgrade1.style.display = 'inline';
+            upgradeCheck1 = false;
+        }
+        if (handmadeOwned > 9 && upgradeCheck2) {
+            upgrade2.style.display = 'inline';
+            upgradeCheck2 = false;
+        }
+        if (handmadeOwned > 19 && upgradeCheck4) {
+            upgrade4.style.display = 'inline';
+            upgradeCheck4 = false;
+        }
+        if (handmadeOwned > 19 && upgradeCheck5) {
+            upgrade5.style.display = 'inline';
+            upgradeCheck5 = false;
+        }
     }  
 
 }
@@ -44,14 +100,22 @@ var motherOwned = 0;
 
 function addMother() {
     if (money >= motherCost) {
-        motherOwned += 1;
+        motherOwned++;
+        totalBuild++;
         money = money - motherCost;
-        motherCost = Math.round(motherCost * 1.3);
-        document.querySelector(".mother-cost").innerHTML = motherCost;
-        document.getElementById("money").innerHTML = money;
+        motherCost = Math.round(motherCost * 1.13);
+        document.querySelector(".mother-cost").innerHTML = formatter.format(motherCost);
+        document.getElementById("money").innerHTML = formatter.format(money);
         document.querySelector('.shop-amount-mother').innerHTML = motherOwned;
-    }  
-
+        document.getElementById("total-build").innerHTML = totalBuild;
+        document.getElementById("mother-ps").innerHTML = Math.round((motherOwned * motherPS) * 100) / 100;
+        
+        if (motherOwned > 4 && upgradeCheck3) {
+            document.getElementById("stand").classList.remove("hidden");
+            upgrade3.style.display = 'inline';
+            upgradeCheck3 = false;
+        }
+    }          
 }
 document.querySelector('#mother').onclick = addMother;
 
@@ -63,15 +127,23 @@ var standOwned = 0;
 
 function addStand() {
     if (money >= standCost) {
-        standOwned += 1;
+        standOwned++;
+        totalBuild++;
         money = money - standCost;
-        standCost = Math.round(standCost * 1.3);
-        document.querySelector(".stand-cost").innerHTML = standCost;
-        document.getElementById("money").innerHTML = money;
+        standCost = Math.round(standCost * 1.13);
+        document.querySelector(".stand-cost").innerHTML = formatter.format(standCost);
+        document.getElementById("money").innerHTML = formatter.format(money);
         document.querySelector('.shop-amount-stand').innerHTML = standOwned;
+        document.getElementById("total-build").innerHTML = totalBuild;
+        document.getElementById("stand-ps").innerHTML = Math.round((standOwned * standPS) * 100) / 100;
+       
+       
+        if (standOwned > 4) {
+            document.getElementById("shop").classList.remove("hidden");
+        }
     }  
+}  
 
-}
 document.querySelector('#stand').onclick = addStand;
 
 // Shop
@@ -81,15 +153,22 @@ var shopOwned = 0;
 
 function addShop() {
     if (money >= shopCost) {
-        shopOwned += 1;
+        shopOwned++;
+        totalBuild++;
         money = money - shopCost;
-        shopCost = Math.round(shopCost * 1.3);
-        document.querySelector(".shop-cost").innerHTML = shopCost;
-        document.getElementById("money").innerHTML = money;
+        shopCost = Math.round(shopCost * 1.13);
+        document.querySelector(".shop-cost").innerHTML = formatter.format(shopCost);
+        document.getElementById("money").innerHTML = formatter.format(money);
         document.querySelector('.shop-amount-shop').innerHTML = shopOwned;
-    }  
+        document.getElementById("total-build").innerHTML = totalBuild;
+        document.getElementById("shop-ps").innerHTML = Math.round((shopOwned * shopPS) * 100) / 100;
 
-}
+        if (shopOwned > 4) {
+            document.getElementById("farm").classList.remove("hidden");
+        }
+    }  
+}  
+
 document.querySelector('#shop').onclick = addShop;
 
 // farm 
@@ -99,15 +178,23 @@ var farmOwned = 0;
 
 function addFarm() {
     if (money >= farmCost) {
-        farmOwned += 1;
+        farmOwned++;
+        totalBuild++;
         money = money - farmCost;
-        farmCost = Math.round(farmCost * 1.3);
-        document.querySelector(".farm-cost").innerHTML = farmCost;
-        document.getElementById("money").innerHTML = money;
-        document.querySelector('.farm-amount-farm').innerHTML = farmOwned;
-    }  
+        farmCost = Math.round(farmCost * 1.13);
+        document.querySelector(".farm-cost").innerHTML = formatter.format(farmCost);
+        document.getElementById("money").innerHTML = formatter.format(money);
+        document.querySelector('.shop-amount-farm').innerHTML = farmOwned;
+        document.getElementById("total-build").innerHTML = totalBuild;
+        document.getElementById("farm-ps").innerHTML = Math.round((farmOwned * farmPS) * 100) / 100;
 
-}
+
+        if (farmOwned > 4) {
+            document.getElementById("factory").classList.remove("hidden");
+        }
+    }  
+}  
+
 document.querySelector('#farm').onclick = addFarm;
 
 
@@ -118,13 +205,103 @@ var factoryOwned = 0;
 
 function addFactory() {
     if (money >= factoryCost) {
-        factoryOwned += 1;
+        factoryOwned++;
+        totalBuild++;
+        console.log("clicked")
         money = money - factoryCost;
-        factoryCost = Math.round(factoryCost * 1.3);
-        document.querySelector(".factory-cost").innerHTML = factoryCost;
-        document.getElementById("money").innerHTML = money;
-        document.querySelector('.factory-amount-factory').innerHTML = factoryOwned;
+        factoryCost = Math.round(factoryCost * 1.13);
+        document.querySelector(".factory-cost").innerHTML = formatter.format(factoryCost);
+        document.getElementById("money").innerHTML = formatter.format(money);
+        document.querySelector('.shop-amount-factory').innerHTML = factoryOwned;
+        document.getElementById("total-build").innerHTML = totalBuild;
+        document.getElementById("factory-ps").innerHTML = Math.round((factoryOwned * factoryPS) * 100) / 100;
     }  
 
 }
+
 document.querySelector('#factory').onclick = addFactory;
+
+
+// show menu
+const menu = document.querySelector(".nav-bar");
+const openButton = document.querySelector(".open-menu");
+const closeButton = document.querySelector(".close-menu");
+
+openButton.addEventListener('click', function() {
+    menu.classList.add('show-nav');
+});
+
+closeButton.addEventListener('click', function() {
+    menu.classList.remove('show-nav');
+});
+
+// upgrades
+
+var upgrade1 = document.querySelector(".upgrade1");
+var navUpgrade1 = document.querySelector(".nav-upgrade1");
+
+upgrade1.addEventListener('click', function() {
+    if (money >= 100) {
+        upgrade1.style.display = 'none';
+        navUpgrade1.style.display = 'inline';
+        money = money - 100;
+        clickMulti = clickMulti * 2;
+    }
+})
+
+var upgrade2 = document.querySelector(".upgrade2");
+var navUpgrade2 = document.querySelector(".nav-upgrade2");
+
+upgrade2.addEventListener('click', function() {
+    if (money >= 500) {
+        upgrade2.style.display = 'none';
+        navUpgrade2.style.display = 'inline';
+        money = money - 500;
+        handmadePS = handmadePS * 2;
+        document.getElementById("hand-ps").innerHTML = Math.round((handmadeOwned * handmadePS) * 100) / 100;
+    }
+})
+
+var upgrade3 = document.querySelector(".upgrade3");
+var navUpgrade3 = document.querySelector(".nav-upgrade3");
+
+upgrade3.addEventListener('click', function() {
+    if (money >= 1000) {
+        upgrade3.style.display = 'none';
+        navUpgrade3.style.display = 'inline';
+        money = money - 1000;
+        motherPS = motherPS * 2;
+        document.getElementById("mother-ps").innerHTML = Math.round((motherOwned * motherPS) * 100) / 100;
+    }
+})
+
+var upgrade4 = document.querySelector(".upgrade4");
+var navUpgrade4 = document.querySelector(".nav-upgrade4");
+
+upgrade4.addEventListener('click', function() {
+    if (money >= 10000) {
+        upgrade4.style.display = 'none';
+        navUpgrade4.style.display = 'inline';
+        money = money - 10000;
+        clickMulti = clickMulti * 4;
+    }
+})
+
+var upgrade5 = document.querySelector(".upgrade5");
+var navUpgrade5 = document.querySelector(".nav-upgrade5");
+
+upgrade5.addEventListener('click', function() {
+    if (money >= 50000) {
+        upgrade5.style.display = 'none';
+        navUpgrade5.style.display = 'inline';
+        money = money - 50000;
+        handmadePS = handmadePS * 4;
+        document.getElementById("hand-ps").innerHTML = Math.round((handmadeOwned * handmadePS) * 100) / 100;
+    }
+})
+
+
+
+
+
+

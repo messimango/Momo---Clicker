@@ -8,11 +8,123 @@ body {
     background-color: lightblue;
 }
 
+.open-menu {
+    position: fixed;
+    top: .8rem;
+    left: .8rem;
+    z-index: 1;
+    background: transparent;
+    border-color: transparent;
+    cursor: pointer;
+    font-size: larger;
+}
+
+.open-menu :hover{
+    color: tomato;
+}
+
+/* NavBar */
+.close-menu i{
+    transform: rotate(180deg);
+}
+
+/* Menu Transform */
+.nav-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    /* width when small screen */
+    width: 100%;
+    height: 100%;
+    background: black;
+    color: aliceblue;
+    transform: translate(-100%);
+    transition: .3s all linear;
+    z-index: 5;
+    padding: .8rem;
+}
+
+.show-nav{
+    transform: translate(0);
+}
+
+@media screen and (min-width: 670px) {
+    .nav-bar {
+        width: 400px;
+    }
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .3rem;
+}
+
+.close-menu {
+    background: transparent;
+    border-color: transparent;
+    cursor: pointer;
+    font-size: larger;
+    color: white;
+}
+
+.close-menu :hover {
+    color: red;
+}
+
+.nav-upgrades-title {
+    text-align: center;
+}
+
+.nav-upgrades i{
+    display: none;
+}
+
+.nav-stats {
+    text-align: center;
+}
+
+.nav-upgrades-info {
+    text-align: center;
+}
+
+.nav-info-box {
+    border: .1rem solid white;
+    padding: .4rem;
+    margin: .8rem;
+}
+
+/* main */
 .title {
     text-align: center;
-    margin: 20px;
-    margin-bottom: 30px;
+    margin: 1rem;
+    margin-bottom: 2rem;
 }
+
+/* upgrades */
+.upgrades {
+    border: 1px solid white;
+    position: absolute;
+    top: 1.5rem;
+    right: 1rem;
+    max-width: 30vw;
+    padding: 0.5rem;
+    text-align: center;
+}
+
+.upgrades h3 {
+    margin-bottom: .5rem;
+}
+
+.upgrades i {
+    display: none;
+    cursor: pointer;
+    padding: 3px;
+    font-size: larger;
+}
+
+/* Game */
 .content {
     display: flex;
     flex-direction: column;
@@ -21,16 +133,16 @@ body {
 }
 
 .money {
-    margin-bottom: 40px;
+    margin-bottom: 2.5rem;
 }
 
 #money {
-    font-size: 20px;
-    margin-left: 5px;
+    font-size: 1.8rem;
+    margin-left: 0.3rem;
 }
 
 .money img {
-    width: 30px;
+    width: 1.5rem;
 }
 
 #momo {
@@ -39,22 +151,38 @@ body {
 
 
 .shops {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
+    display: grid;
+    justify-items: center;
+    width: 90vw;
+    max-width: 1170px;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
 
+@media screen and (min-width: 720px) {
+    .shops {
+        width: 95vw;
+        grid-template-columns: 380px 380px;
+        align-items: center;
+        justify-content: center;
+    }
 }
 
 .shops a{
+    display: grid;
     cursor: pointer;
-    border: 2px solid blue;
-    margin: 5px;
+    border: .2rem solid blue;
+    margin: .3rem;
+    padding: 0.6rem;
+    min-width: 20rem;
+    
 }
 
 .cost-img {
-    width: 30px;
-    margin-right: 8px;
+    width: 2rem;
+    margin-right: 0.5rem;
 }
 
 #momo {
@@ -63,6 +191,34 @@ body {
 }
 
 .name span {
-    font-size: 15px;
+    font-size: 1rem;
+}
+
+/* hide elements */
+.hidden {
+    visibility: hidden;
+}
+
+
+
+/* footer */
+.footer-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    padding: 0.6rem;
+    width: 100%;
+    color: white;
+    position: fixed;
+    bottom: 0;
+}
+
+.socials-link a{
+    text-decoration: none;
+    color: white;
+    font-size: xx-large;
+    margin-right: 0.6rem;
 }
 
