@@ -305,3 +305,22 @@ upgrade5.addEventListener('click', function() {
 
 
 
+// upgrade info
+const textBox = document.querySelector(".text-box")
+
+const messages = {
+  u1: "Clicks produce 2x the MoMos",
+  u2: "Makes 2x handmade MoMos",
+  u3: "Mother's make MoMos 2x faster",
+  u4: "Clicks produce 4x the MoMos",
+  u5: "Makes 4x handmade MoMos",
+};
+
+document.querySelectorAll('.msg').forEach(button => {
+  button.addEventListener("mouseover", e => textBox.innerHTML = messages[e.currentTarget.dataset.msg], false);
+  button.addEventListener("mouseout", func1, false);
+});
+
+function func1() {
+  textBox.innerHTML = "See details here"
+}
